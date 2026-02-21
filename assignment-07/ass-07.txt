@@ -1,0 +1,18 @@
+BEGIN
+  INPUT n
+  IF n < 0 THEN
+      PRINT "Error: Please enter a non-negative input."
+      STOP
+  ENDIF
+
+  IF n = 0 OR n = 1 THEN
+      SET factorial = 1
+  ELSE
+      SET factorial = 1
+      FOR i = 2 TO n
+          SET factorial = factorial * i
+      ENDFOR
+  ENDIF
+
+  PRINT "The factorial of " + n + " is: " + factorial
+END
