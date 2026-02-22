@@ -1,0 +1,27 @@
+.white {
+color: white;
+}
+.cyan {
+    color: cadetblue;
+}
+
+.black {
+    padding: 20px;
+    background-color: black;
+}
+
+.projects {
+    color: white;
+    background-color: purple;
+    text-align: center;
+    font-style: italic;
+    padding: 15px;
+}
+
+.contact {
+    color: #2c1e63;
+    background-color: #8fb3d9;
+    text-decoration: underline;
+    text-align: end;
+    padding: 10px;
+}
