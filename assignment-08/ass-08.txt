@@ -1,0 +1,12 @@
+BEGIN
+    INPUT n
+    IF n < 0
+        PRINT "Error: Please enter a non-negative input."
+        STOP
+    ENDIF
+    SET sum = 0
+    FOR i = 1 TO n
+        sum = sum + i
+    ENDFOR
+    PRINT "The result of sum is: " + sum 
+END
