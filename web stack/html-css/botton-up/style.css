@@ -1,19 +1,17 @@
 .search-btn{
     background-color: transparent;
-    border-radius: 12px;
-    border-style: solid;
-    border-color: teal;
+    border-radius: 18px;
+    border: 0px solid #00d1b2;
     padding: 5px 40px;
-    color: teal;
+    color: #00d1b2;
     font-weight: 600;
     font-size: 16px;
 }
 
 .add-btn{
-    background-color: teal;
+    background-color: #00d1b2;
+    border: 0px solid #00d1b2;
     border-radius: 50%;
-    border-style: solid;
-    border-color: teal;
     width: 40px;
     height: 40px;
     color: white;
@@ -34,3 +32,8 @@
     box-shadow: 0px 0px 0px black;
     transform: translate(4px, 4px);
 } 
+
+.display button{
+    display: block;
+    margin-bottom: 20px;
+}
