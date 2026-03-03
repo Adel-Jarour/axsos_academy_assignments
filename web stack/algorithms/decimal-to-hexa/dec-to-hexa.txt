@@ -1,0 +1,33 @@
+Q1\ 25	
+	
+	input	result	reminder
+	25/16	1	9
+	1/16	0	1
+	
+	final answer = 19
+
+Q2\ 100
+
+	input	result	reminder
+	100/16	6	4
+	6/16	0	6
+	
+	final answer = 64
+
+Q3\ 255
+
+	input	result	reminder
+	255/16	15	15
+	15/8	0	15
+	
+	final answer = FF
+
+Q4\ 1024
+
+	input	result	reminder
+	1024/16	64	0
+	64/16	4	0
+	4/16	0	4
+	
+	final answer = 400
+
