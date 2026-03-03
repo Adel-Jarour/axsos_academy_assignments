@@ -1,0 +1,36 @@
+Q1\ 25	
+	
+	input	result	reminder
+	25/8	3	1
+	3/8	0	3
+	
+	final answer = 31
+
+Q2\ 100
+
+	input	result	reminder
+	100/8	12	4
+	12/8	1	4
+	1/8	0	1
+	
+	final answer = 144
+
+Q3\ 255
+
+	input	result	reminder
+	255/8	31	7
+	31/8	3	7
+	3/8	0	3
+	
+	final answer = 377
+
+Q4\ 1024
+
+	input	result	reminder
+	1024/8	128	0
+	128/8	16	0
+	16/8	2	0
+	2/8	0	2
+	
+	final answer = 2000
+
