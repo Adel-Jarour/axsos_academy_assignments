@@ -31,7 +31,6 @@
     width: 210px;
     background-color: yellow;
 }
-
 #advertisement {
     height: 120px;
     width: 660px; 
@@ -41,6 +40,5 @@
 
 .row {
     display: flex;
-    flex-direction: row;
     gap: 15px;
 }

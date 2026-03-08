@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- navbar -->
+    <div class="nav">
+      <h1>Profile</h1>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a class="active" href="#">My Profile</a></li>
+        <li><a href="#">Find Connections</a></li>
+        <li><button class="btn">Sign Out</button></li>
+      </ul>
+    </div>
+    <div class="container">
+      <!-- left side -->
+      <div class="left">
+        <!-- card -->
+        <div class="card">
+          <div class="card-header"></div>
+          <div class="card-body">
+            <img class="avatar" src="images/todd-s.jpg" alt="profile" />
+            <h2>Adel Jarour</h2>
+            <p class="location">
+              <img src="icons/map-marker.png" alt="location" /> Gaza
+            </p>
+            <p class="bio">
+              Developer | Engineer | Problem Solver<br />
+              Master of shadows and the Internet!
+            </p>
+            <p class="setting">
+              <img src="icons/gear.png" alt="setting" />
+              <a class="edit" href="#"> edit profile</a>
+            </p>
+          </div>
+        </div>
+        <!-- education -->
+        <div class="education">
+          <div class="section-title">Education</div>
+          <div class="section-body">
+            <h3>AXSOS Academy - Full Stack Bootcamp</h3>
+            <p class="date">Feb 2026 - Aug 2026</p>
+            <p>
+              A part-time immersive training program in web fundamentals,
+              Python, algorithms, and data structures. The Bootcamp includes 20
+              weeks of programming as the following: +660 coding hours in total,
+              50 hours pre-boot camp, 120 hrs web fundamentals, 240 hrs Python,
+              60 hours of algorithms and data structures, 60 hours of 2 complete
+              projects (Solo & Group). All stacks include group activities and
+              leet-code and Hacker Rank.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- right side -->
+      <div class="right">
+        <!-- connection requests -->
+        <div class="panel">
+          <div class="panel-title">
+            <span class="badge">2</span>
+            Connection Requests
+          </div>
+
+          <div class="user">
+            <p>
+              <img
+                class="user-image"
+                src="images/todd-s.jpg"
+                alt="Connection request todd-s"
+              />
+              Todd E
+            </p>
+            <div class="actions">
+              <img src="icons/accept-circle.png" alt="accept" />
+              <img src="icons/close-circle.png" alt="close" />
+            </div>
+          </div>
+
+          <div class="user">
+            <p>
+              <img
+                class="user-image"
+                src="images/phil-s.jpg"
+                alt="Connection request phil-s"
+              />
+              Phil-s
+            </p>
+            <div class="actions">
+              <img src="icons/accept-circle.png" alt="accept" />
+              <img src="icons/close-circle.png" alt="close" />
+            </div>
+          </div>
+        </div>
+
+        <!-- your connections -->
+        <div class="panel">
+          <div class="panel-title">
+            <span class="badge">500+</span>
+            Your Connections
+          </div>
+          <div class="user">
+            <p>
+              <img
+                class="user-image"
+                src="images/adrien-s.jpg"
+                alt="Connection adrien-s"
+              />
+              Adrien-s
+            </p>
+          </div>
+          <div class="user">
+            <p>
+              <img
+                class="user-image"
+                src="images/anne-s.jpg"
+                alt="Connection anne-s"
+              />
+              Anne-s
+            </p>
+          </div>
+          <div class="user">
+            <p>
+              <img
+                class="user-image"
+                src="images/alayne-s.jpg"
+                alt="Connection alayne-s"
+              />
+              Alayne-s
+            </p>
+          </div>
+          <div class="user">
+            <p>
+              <img
+                class="user-image"
+                src="images/arry-s.jpg"
+                alt="Connection arry-s"
+              />
+              Arry-s
+            </p>
+          </div>
+          <a class="view-more" href="#">View More</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
