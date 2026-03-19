@@ -33,11 +33,22 @@ function searchingInAnArray(searchNum = 25) {
 
 function sortingAnArray() {
   let scores = [50, 20, 70, 10, 40];
-  console.log("Ascending order: " + scores.sort((a, b) => a - b));
-  console.log("Descending order: " + scores.sort((a, b) => b - a));
+  // console.log("Ascending order: " + scores.sort((a, b) => a - b));
+  // console.log("Descending order: " + scores.sort((a, b) => b - a));
 
-  let names = ["Shatha", "Sara", "Lina", "Sami", "Dalia"];
-  console.log("Alphabetical order: " + names.sort());
+  // let names = ["Shatha", "Sara", "Lina", "Sami", "Dalia"];
+  // console.log("Alphabetical order: " + names.sort());
+
+  for (let i = 0; i < scores.length; i++) {
+    for (let j = i + 1; j < scores.length; j++) {
+      if (scores[i] < scores[j]) {
+        let temp = scores[i];
+        scores[i] = scores[j];
+        scores[j] = temp;
+      }
+    }
+  }
+  console.log(scores);
 }
 
 function insertingElements() {
@@ -124,15 +135,15 @@ function bonusChallenge() {
 }
 
 // exectues all code
-accessingElements();
-traversingAnArray();
-searchingInAnArray();
+// accessingElements();
+// traversingAnArray();
+// searchingInAnArray();
 sortingAnArray();
-insertingElements();
-deletingElements();
-combiningArrays();
-splittingAnArray();
-filteringElements();
-advancedChallengeRemoveDuplicate();
-advancedChallengeRotateArray();
-bonusChallenge();
+// insertingElements();
+// deletingElements();
+// combiningArrays();
+// splittingAnArray();
+// filteringElements();
+// advancedChallengeRemoveDuplicate();
+// advancedChallengeRotateArray();
+// bonusChallenge();
