@@ -4,7 +4,6 @@ body {
   background-color: #f5f5f5;
 }
 
-/* Navbar */
 .navbar {
   display: flex;
   align-items: center;
@@ -25,14 +24,12 @@ body {
   color: white;
 }
 
-/* Layout */
 .container {
   display: flex;
   gap: 20px;
   padding: 20px 0;
 }
 
-/* Left */
 .left {
   flex: 2;
 }
@@ -47,7 +44,6 @@ body {
   align-items: center;
 }
 
-/* Fix spacing */
 .card h2 {
   margin: 0;
   font-size: 28px;
@@ -75,7 +71,6 @@ body {
   box-shadow: 3px 3px 0 #333;
 }
 
-/* Right */
 .right {
   flex: 1;
   background: white;

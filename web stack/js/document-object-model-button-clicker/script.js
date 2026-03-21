@@ -1,4 +1,3 @@
-// Login / Logout toggle
 const loginBtn = document.getElementById("authBtn");
 
 loginBtn.addEventListener("click", function () {
@@ -9,7 +8,6 @@ loginBtn.addEventListener("click", function () {
   }
 });
 
-// Like buttons alert
 const likeButtons = document.querySelectorAll(".likeBtn");
 
 likeButtons.forEach(function (btn) {
@@ -18,7 +16,6 @@ likeButtons.forEach(function (btn) {
   });
 });
 
-// Remove Add Definition button
 const addDefBtn = document.getElementById("addDefBtn");
 
 addDefBtn.addEventListener("click", function () {
