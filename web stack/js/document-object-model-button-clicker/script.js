@@ -1,5 +1,5 @@
 // Login / Logout toggle
-const loginBtn = document.getElementById("loginBtn");
+const loginBtn = document.getElementById("authBtn");
 
 loginBtn.addEventListener("click", function () {
   if (loginBtn.innerText === "Login") {

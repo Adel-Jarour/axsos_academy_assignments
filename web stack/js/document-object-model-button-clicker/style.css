@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  margin: 0;
+  margin: 5px 30px;
   background-color: #f5f5f5;
 }
 
@@ -21,13 +21,15 @@ body {
 .navbar button {
   padding: 6px 12px;
   cursor: pointer;
+  background-color: #2b78e3;
+  color: white;
 }
 
 /* Layout */
 .container {
   display: flex;
   gap: 20px;
-  padding: 20px;
+  padding: 20px 0;
 }
 
 /* Left */
@@ -35,29 +37,42 @@ body {
   flex: 2;
 }
 
-/* Cards */
 .card {
   background: white;
   border: 2px solid #000;
   padding: 15px;
   margin-bottom: 20px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
 }
 
+/* Fix spacing */
 .card h2 {
   margin: 0;
+  font-size: 28px;
 }
 
 .type {
-  color: gray;
+  font-style: italic;
+  margin: 4px 0;
 }
 
-/* Like button */
+.card-left {
+  flex: 1;
+}
+
+.card-right {
+  flex: 1;
+}
+
 .likeBtn {
-  background: #ffd966;
-  border: 2px solid #000;
-  padding: 8px;
-  cursor: pointer;
   margin-top: 10px;
+  background: #fed966;
+  border: 2px solid #333;
+  padding: 8px 14px;
+  font-weight: bold;
+  box-shadow: 3px 3px 0 #333;
 }
 
 /* Right */
@@ -70,9 +85,11 @@ body {
 }
 
 #addDefBtn {
-  background: #93c47d;
+  width: 100%;
+  background: #92c47d;
   border: 2px solid #000;
   padding: 10px;
   cursor: pointer;
   margin-top: 10px;
+  box-shadow: 3px 3px 0 #333;
 }
