@@ -1,0 +1,74 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VideoLab Preview</title>
+    <link rel="stylesheet" href="css.style" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <div class="logo">VideoLab</div>
+        <div class="search-wrap">
+          <input class="search" type="search" placeholder="Search" />
+        </div>
+        <button class="login">Login</button>
+      </header>
+
+      <main class="layout">
+        <section class="main-video">
+          <div class="video-frame">
+            <video
+              id="previewVideo"
+              class="video"
+              src="https://videos.pexels.com/video-files/855631/855631-hd_1280_720_30fps.mp4"
+              muted
+              loop
+              preload="metadata"
+            ></video>
+          </div>
+          <h2>Example Video Title</h2>
+          <p class="meta">1.3K views | June 18, 2021</p>
+          <div class="channel">
+            <span class="avatar"></span>
+            <span class="channel-name">Example User Name</span>
+            <button class="subscribe">Subscribe</button>
+          </div>
+        </section>
+
+        <aside class="up-next">
+          <h3>Up Next</h3>
+          <ul class="next-list">
+            <li class="next-item">
+              <div class="thumb">
+                <span class="play"></span>
+              </div>
+              <span class="title">Not a Rick Roll</span>
+            </li>
+            <li class="next-item">
+              <div class="thumb">
+                <span class="play"></span>
+              </div>
+              <span class="title">10 Facts About ET's Cat</span>
+            </li>
+            <li class="next-item">
+              <div class="thumb">
+                <span class="play"></span>
+              </div>
+              <span class="title">5 Cosplay Tips</span>
+            </li>
+            <li class="next-item">
+              <div class="thumb">
+                <span class="play"></span>
+              </div>
+              <span class="title">Boy Battles Dinobot in Thunderdome</span>
+            </li>
+          </ul>
+        </aside>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
