@@ -1,0 +1,37 @@
+body {
+  background: #f4f4f4;
+  padding: 40px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  width: 400px;
+  border: 2px solid black;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.like-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#likeWrapper {
+  display: none;
+}
+
+button {
+  background: gold;
+  border: 2px solid black;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: orange;
+}
