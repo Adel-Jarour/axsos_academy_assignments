@@ -67,7 +67,6 @@ body {
     background: #111;
     margin-bottom: 20px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    position: relative;
 }
 
 .video {
@@ -80,21 +79,6 @@ body {
     outline: 3px solid rebeccapurple;
     outline-offset: 3px;
     transition: outline-color 0.2s ease;
-}
-
-.video-controls {
-    position: absolute;
-    left: 12px;
-    right: 12px;
-    bottom: 10px;
-    pointer-events: none;
-}
-
-.video-controls-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    opacity: 0.9;
 }
 
 .row {
