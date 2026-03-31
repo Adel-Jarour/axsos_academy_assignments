@@ -1,0 +1,109 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #9fc5f8;
+  color: white;
+  padding: 10px 45px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 50px;
+  list-style-type: none;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 22px;
+}
+
+.container {
+  padding: 16px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.top-page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.divider {
+  border: none;
+  height: 2px;
+  background-color: black;
+  margin: 16px 0;
+}
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.card-item {
+  background-color: #eeeeee;
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 22%;
+}
+
+.card-item img {
+  border-radius: 50%;
+  width: 80px;
+  margin: 16px 0;
+}
+
+.temperature {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.max {
+  color: red;
+}
+
+.min {
+  color: blue;
+}
+
+.cookie-banner {
+  position: fixed;
+  bottom: 16px;
+  right: 24px;
+  left: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  background-color: #eeeeee;
+  padding: 24px 32px;
+  border: 1px solid black;
+}
+
+.left-cookie {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+#acceptBtn {
+  padding: 8px 12px;
+  background-color: #9fc5f8;
+  color: black;
+  box-shadow: 3px 4px 0 black;
+}

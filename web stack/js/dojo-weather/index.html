@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DojoWeather</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="navbar">
+      <h1 class="nav-title">DojoWeather</h1>
+      <ul class="nav-links">
+        <a href="#"><li>Burbank</li></a>
+        <a href="#"><li>Chicago</li></a>
+        <a href="#"><li>Dallas</li></a>
+      </ul>
+    </div>
+    <div class="container">
+      <div class="top-page">
+        <h2 class="city">San Jose</h2>
+        <p>
+          <label for="temperature"> show temperature in </label>
+          <select id="temperature" name="temperature">
+            <option value="celsius">°C</option>
+            <option value="fahrenheit">°F</option>
+          </select>
+        </p>
+      </div>
+      <hr class="divider" />
+      <div class="cards">
+        <div class="card-item">
+          <h3 class="day">Today</h3>
+          <img src="assets/some_rain.png" class="img" />
+          <p class="desc">Some rain</p>
+          <div class="temperature">
+            <span class="max">24°</span>
+            <span class="min">18°</span>
+          </div>
+        </div>
+        <div class="card-item">
+          <h3 class="day">Tomorrow</h3>
+          <img src="assets/some_sun.png" class="img" />
+          <p class="desc">Some sun</p>
+          <div class="temperature">
+            <span class="max">27°</span>
+            <span class="min">19°</span>
+          </div>
+        </div>
+        <div class="card-item">
+          <h3 class="day">Friday</h3>
+          <img src="assets/some_clouds.png" class="img" />
+          <p class="desc">Some clouds</p>
+          <div class="temperature">
+            <span class="max">21°</span>
+            <span class="min">16°</span>
+          </div>
+        </div>
+        <div class="card-item">
+          <h3 class="day">Saturday</h3>
+          <img src="assets/some_sun.png" class="img" />
+          <p class="desc">Some sun</p>
+          <div class="temperature">
+            <span class="max">26°</span>
+            <span class="min">21°</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="cookieBanner" class="cookie-banner">
+      <div class="left-cookie">
+        <img src="assets/cookie.png" alt="cookie" />
+        <div class="content">
+          <h4>Stop! Cokkie time</h4>
+          <p>
+            This website uses cookies to improve your experience.
+            <a href="#">Read more</a>
+          </p>
+        </div>
+      </div>
+      <button id="acceptBtn">I Accept</button>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
