@@ -1,0 +1,31 @@
+# 1. List installed packages
+pip3 list
+# Shows all installed packages in the current environment
+
+# 2. Activate virtual environment (Linux / macOS)
+source myEnvironments/py3Env/bin/activate
+# Activates the virtual environment
+
+# 3. Activate virtual environment (Windows)
+myEnvironments\py3Env\Scripts\activate
+# Same as above but for Windows
+
+# 4. Install Django with specific version
+pip install Django==2.2.4
+# Installs Django inside the current environment
+
+# 5. Show packages in requirements format
+pip freeze
+# Lists packages with exact versions
+
+# 6. Create requirements.txt file
+pip freeze > requirements.txt
+# Saves all installed packages into a file
+
+# 7. Uninstall Django
+pip uninstall Django
+# Removes Django from the environment
+
+# 8. Show Django details
+pip show Django
+# Displays info like version and location
