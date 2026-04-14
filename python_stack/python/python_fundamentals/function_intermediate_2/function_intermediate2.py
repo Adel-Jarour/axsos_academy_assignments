@@ -10,6 +10,8 @@ sport_directory = {
     'soccer' : ['Messi', 'Ronaldo', 'Ronney'],
 }
 
+print(sport_directory['basketball'][2])
+
 z = [{'x': 10, 'y': 20}]
 
 x[1][0] = 15
