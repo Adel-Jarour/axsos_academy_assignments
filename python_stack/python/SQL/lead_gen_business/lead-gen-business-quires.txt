@@ -1,0 +1,234 @@
+USE lead_gen_business;
+
+
+***********************************
+1. What query would you run to get
+the total revenue for March of 2012?
+*****
+
+SELECT SUM(amount) AS revenue
+FROM billing
+WHERE charged_datetime >= '2012-03-01' AND charged_datetime < '2012-04-01';
+
+
+***********************************
+2. What query would you run to get
+total revenue collected from the client
+with an id of 2?
+*****
+
+SELECT client_id, SUM(b.amount) AS total_revenue
+FROM billing b
+WHERE b.client_id = 2;
+
+
+***********************************
+3. What query would you run to get all
+the sites that client=10 owns?
+*****
+
+SELECT s.domain_name AS website, client_id
+FROM sites s
+WHERE s.client_id = 10;
+
+
+
+***********************************
+4a. What query would you run to get
+total # of sites created per month per
+year for the client with an id of 1?
+*****
+
+SELECT 
+	client_id,
+	COUNT(*) AS number_of_websities,
+    MONTH(created_datetime) AS month,
+    YEAR(created_datetime) AS year
+FROM sites
+WHERE client_id = 1
+GROUP BY YEAR(created_datetime), MONTH(created_datetime)
+ORDER BY year DESC, month DESC;
+
+
+
+***********************************
+4b. What query would you run to get
+total # of sites created per month per
+year for client=20?
+*****
+
+SELECT 
+    client_id,
+	COUNT(*) AS number_of_websities,
+    MONTH(created_datetime) AS month,
+    YEAR(created_datetime) AS year
+FROM sites
+WHERE client_id = 20
+GROUP BY YEAR(created_datetime), MONTH(created_datetime)
+ORDER BY year DESC, month DESC;
+
+
+
+***********************************
+5. What query would you run to get
+the total # of leads generated for each
+of the sites between January 1, 2011
+to February 15, 2011?
+*****
+
+SELECT 
+    s.site_id,
+    s.domain_name AS website,
+    COUNT(l.leads_id) AS number_of_leads
+FROM sites s
+LEFT JOIN leads l ON s.site_id = l.site_id
+    AND l.registered_datetime >= '2011-01-01'
+    AND l.registered_datetime < '2011-02-16'
+GROUP BY s.site_id, s.domain_name
+ORDER BY number_of_leads DESC;
+
+
+
+***********************************
+6. What query would you run to get a
+list of client names and the total # of
+leads we've generated for each of our
+clients between January 1, 2011 to
+December 31, 2011?
+*****
+
+SELECT 
+    c.client_id,
+    CONCAT(c.first_name, ' ', c.last_name) AS client,
+    COUNT(l.leads_id) AS number_of_leads
+FROM clients c
+JOIN sites s ON c.client_id = s.client_id
+JOIN leads l ON s.site_id = l.site_id
+    
+where l.registered_datetime >= '2011-01-01'
+    AND l.registered_datetime < '2012-01-01'
+GROUP BY c.client_id, client
+ORDER BY number_of_leads DESC;
+
+
+
+***********************************
+7. What query would you run to get a
+list of client names and the total # of
+leads we've generated for each client
+each month between months 1 - 6 of
+Year 2011?
+*****
+
+SELECT 
+	concat(c.first_name, ' ', c.last_name) AS client,
+    COUNT(l.leads_id) AS number_of_leads,
+    month(l.registered_datetime) AS month
+FROM clients c
+join sites s ON c.client_id = s.client_id
+join leads l ON s.site_id = l.site_id
+	
+where l.registered_datetime >= '2011-01-01'
+    AND l.registered_datetime < '2011-07-01'
+group by c.client_id, client, month;
+
+
+
+
+***********************************
+8a. What query would you run to get a
+list of client names and the total # of
+leads we've generated for each of our
+clients' sites between January 1, 2011
+to December 31, 2011? Order this
+query by client id
+*****
+
+SELECT 
+    CONCAT(c.first_name, ' ', c.last_name) AS client,
+    s.domain_name AS websites,
+    COUNT(l.leads_id) AS number_of_leads
+FROM clients c
+JOIN sites s ON c.client_id = s.client_id
+JOIN leads l ON s.site_id = l.site_id
+	
+where l.registered_datetime >= '2011-01-01'
+    AND l.registered_datetime < '2012-01-01'
+GROUP BY c.client_id, client, websites
+ORDER BY c.client_id ASC, number_of_leads DESC;
+
+
+
+***********************************
+8b. Come up with a second query that
+shows all the clients, the site name(s),
+and the total number of leads
+generated from each site for all time.
+*****
+
+SELECT 
+    CONCAT(c.first_name, ' ', c.last_name) AS client,
+    s.domain_name AS websites,
+    COUNT(l.leads_id) AS number_of_leads
+FROM clients c
+JOIN sites s ON c.client_id = s.client_id
+JOIN leads l ON s.site_id = l.site_id
+	
+GROUP BY c.client_id, client, websites;
+
+
+
+***********************************
+9a. Write a single query that retrieves
+total revenue collected from each
+client for each month of the year.
+Order it by client id.
+With month id
+*****
+
+SELECT 
+    CONCAT(c.first_name, ' ', c.last_name) AS client_name,
+    SUM(b.amount) AS total_revenue,
+    MONTH(b.charged_datetime) AS month_charged,
+    YEAR(b.charged_datetime) AS year_charged
+FROM clients c
+JOIN billing b ON c.client_id = b.client_id
+GROUP BY c.client_id, client_name, year_charged, month_charged
+ORDER BY c.client_id ASC, year_charged ASC, month_charged ASC;
+
+
+
+***********************************
+9b. With month name
+*****
+
+SELECT 
+    CONCAT(c.first_name, ' ', c.last_name) AS client_name,
+    SUM(b.amount) AS total_revenue,
+    MONTHNAME(b.charged_datetime) AS month_charged,
+    YEAR(b.charged_datetime) AS year_charged
+FROM clients c
+JOIN billing b ON c.client_id = b.client_id
+GROUP BY c.client_id, client_name, YEAR(b.charged_datetime), MONTH(b.charged_datetime), month_charged
+ORDER BY c.client_id ASC, year_charged ASC, MONTH(b.charged_datetime) ASC;
+
+
+
+***********************************
+10. Write a single query that retrieves
+all the sites that each client owns.
+Group the results so that each row
+shows a new client. It will become
+clearer when you add a new field
+called 'sites' that has all the sites that
+the client owns. (HINT: use
+GROUP_CONCAT)
+*****
+
+SELECT 
+    CONCAT(c.first_name, ' ', c.last_name) AS client_name,
+    GROUP_CONCAT(s.domain_name ORDER BY s.domain_name ASC SEPARATOR ', ') AS sites
+FROM clients c
+JOIN sites s ON c.client_id = s.client_id
+GROUP BY c.client_id, client_name
+ORDER BY c.client_id ASC;
