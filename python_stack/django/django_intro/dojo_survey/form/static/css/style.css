@@ -1,0 +1,271 @@
+/* form/static/form/css/style.css */
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f3f4f6;
+  line-height: 1.6;
+}
+
+/* Container Styles */
+.form-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.result-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading Styles */
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+h3 {
+  margin-bottom: 10px;
+  color: #555;
+}
+
+/* Form Group Styles */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+.required:after {
+  content: " *";
+  color: red;
+}
+
+/* Form Control Styles */
+.form-control {
+  width: 100%;
+  padding: 10px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #667eea;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Radio and Checkbox Groups */
+.radio-group,
+.checkbox-group {
+  display: flex;
+  gap: 20px;
+  margin-top: 5px;
+  flex-wrap: wrap;
+}
+
+.radio-option,
+.checkbox-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.radio-option input,
+.checkbox-option input {
+  cursor: pointer;
+}
+
+.radio-option label,
+.checkbox-option label {
+  margin-bottom: 0;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+/* Button Styles */
+.btn-submit {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: transform 0.2s ease;
+}
+
+.btn-submit:hover {
+  transform: translateY(-2px);
+}
+
+.btn-submit:active {
+  transform: translateY(0);
+}
+
+.btn-back {
+  display: inline-block;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 12px 30px;
+  text-decoration: none;
+  border-radius: 8px;
+  margin-top: 20px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.btn-back:hover {
+  transform: translateY(-2px);
+  color: white;
+}
+
+/* Result Page Styles */
+.result-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 30px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  color: white;
+  text-align: center;
+}
+
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.result-table tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.result-table td {
+  padding: 15px;
+}
+
+.result-table td:first-child {
+  font-weight: bold;
+  width: 30%;
+  background-color: #f8f9fa;
+}
+
+.result-table td:last-child {
+  background-color: white;
+}
+
+/* Interest Tags */
+.interest-list {
+  list-style: none;
+  padding: 0;
+}
+
+.interest-list li {
+  display: inline-block;
+  background: #667eea;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  margin: 5px;
+}
+
+/* Color Preview */
+.color-preview {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* Success Icon */
+.success-icon {
+  text-align: center;
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+/* Debug Section */
+.debug-section {
+  margin-top: 30px;
+  padding: 20px;
+  background: #f0f0f0;
+  border-radius: 10px;
+  font-family: monospace;
+  font-size: 12px;
+  overflow-x: auto;
+}
+
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+.text-gray {
+  color: #6c757d;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .form-container,
+  .result-container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .radio-group,
+  .checkbox-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .result-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .result-table td:first-child {
+    width: 100%;
+  }
+}

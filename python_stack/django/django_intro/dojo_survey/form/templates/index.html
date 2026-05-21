@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Information Form</title>
+
+    {% load static %}
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    <!-- Optional: Add a CSS framework alongside your custom CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>User Information Form</h1>
+
+      <!-- Form submits to /result/ using POST method -->
+      <form action="{% url 'result' %}" method="POST">
+        {% csrf_token %}
+
+        <!-- Text Input -->
+        <div class="form-group">
+          <label for="name" class="required">Full Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form-control"
+            placeholder="Enter your full name"
+            required
+          />
+        </div>
+
+        <!-- Email Input -->
+        <div class="form-group">
+          <label for="email" class="required">Email Address:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            placeholder="your.email@example.com"
+            required
+          />
+        </div>
+
+        <!-- Number Input -->
+        <div class="form-group">
+          <label for="age">Age:</label>
+          <input
+            type="number"
+            id="age"
+            name="age"
+            class="form-control"
+            placeholder="Your age"
+            min="1"
+            max="120"
+          />
+        </div>
+
+        <!-- NINJA BONUS: Radio Buttons -->
+        <div class="form-group">
+          <label>Gender (NINJA BONUS - Radio Buttons):</label>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input type="radio" id="male" name="gender" value="Male" />
+              <label for="male">Male</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="female" name="gender" value="Female" />
+              <label for="female">Female</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="other" name="gender" value="Other" />
+              <label for="other">Other</label>
+            </div>
+            <div class="radio-option">
+              <input
+                type="radio"
+                id="prefer_not"
+                name="gender"
+                value="Prefer not to say"
+              />
+              <label for="prefer_not">Prefer not to say</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- SENSEI BONUS: Checkboxes -->
+        <div class="form-group">
+          <label>Areas of Interest (SENSEI BONUS - Checkboxes):</label>
+          <div class="checkbox-group">
+            <div class="checkbox-option">
+              <input
+                type="checkbox"
+                id="tech"
+                name="interest"
+                value="Technology"
+              />
+              <label for="tech">Technology</label>
+            </div>
+            <div class="checkbox-option">
+              <input
+                type="checkbox"
+                id="sports"
+                name="interest"
+                value="Sports"
+              />
+              <label for="sports">Sports</label>
+            </div>
+            <div class="checkbox-option">
+              <input type="checkbox" id="music" name="interest" value="Music" />
+              <label for="music">Music</label>
+            </div>
+            <div class="checkbox-option">
+              <input type="checkbox" id="art" name="interest" value="Art" />
+              <label for="art">Art</label>
+            </div>
+            <div class="checkbox-option">
+              <input
+                type="checkbox"
+                id="science"
+                name="interest"
+                value="Science"
+              />
+              <label for="science">Science</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Select Dropdown -->
+        <div class="form-group">
+          <label for="favorite_color">Favorite Color:</label>
+          <select
+            id="favorite_color"
+            name="favorite_color"
+            class="form-control"
+          >
+            <option value="">Select a color</option>
+            <option value="Red">Red</option>
+            <option value="Blue">Blue</option>
+            <option value="Green">Green</option>
+            <option value="Yellow">Yellow</option>
+            <option value="Purple">Purple</option>
+            <option value="Orange">Orange</option>
+          </select>
+        </div>
+
+        <!-- Checkbox (single) -->
+        <div class="form-group">
+          <div class="checkbox-option">
+            <input
+              type="checkbox"
+              id="newsletter"
+              name="newsletter"
+              value="on"
+            />
+            <label for="newsletter">Subscribe to our newsletter</label>
+          </div>
+        </div>
+
+        <!-- Textarea -->
+        <div class="form-group">
+          <label for="comments">Comments or Questions:</label>
+          <textarea
+            id="comments"
+            name="comments"
+            class="form-control"
+            placeholder="Please share your thoughts..."
+          ></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn-submit">Submit Form</button>
+      </form>
+    </div>
+
+    <!-- Optional: Link to external JavaScript file -->
+    {% load static %}
+    <script src="{% static 'form_app/js/main.js' %}"></script>
+
+    <!-- Optional: Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

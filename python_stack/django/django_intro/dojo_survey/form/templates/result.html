@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Submission Results</title>
+
+    {% load static %}
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    <!-- Optional Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="result-container">
+      <div class="success-icon">✅</div>
+
+      <div class="result-card">
+        <h1>Thank You, {{ name }}!</h1>
+        <p class="text-center">
+          Your information has been successfully submitted.
+        </p>
+      </div>
+
+      <h2>Submitted Information</h2>
+
+      <table class="result-table">
+        <tr>
+          <td>Full Name:</td>
+          <td>{{ name }}</td>
+        </tr>
+        <tr>
+          <td>Email Address:</td>
+          <td>{{ email }}</td>
+        </tr>
+        <tr>
+          <td>Age:</td>
+          <td>{{ age }}</td>
+        </tr>
+        <tr>
+          <td>Gender:</td>
+          <td>{{ gender }}</td>
+        </tr>
+        <tr>
+          <td>Areas of Interest:</td>
+          <td>
+            {% if interest %} {% for item in interest %}
+            <span
+              style="
+                display: inline-block;
+                background: #667eea;
+                color: white;
+                padding: 5px 15px;
+                border-radius: 20px;
+                margin: 5px;
+              "
+            >
+              {{ item }}
+            </span>
+            {% endfor %} {% else %} No interests selected {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <td>Favorite Color:</td>
+          <td>
+            {% if favorite_color %}
+            <span
+              class="color-preview"
+              style="background-color: {{ favorite_color|lower }};"
+            ></span>
+            {{ favorite_color }} {% else %} Not specified {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <td>Newsletter Subscription:</td>
+          <td>
+            {% if newsletter == 'on' %} ✅ Subscribed {% else %} ❌ Not
+            subscribed {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <td>Comments/Questions:</td>
+          <td>{{ comments|linebreaks }}</td>
+        </tr>
+      </table>
+
+      <div class="text-center">
+        <a href="{% url 'index' %}" class="btn-back"
+          >← Submit Another Response</a
+        >
+      </div>
+
+      <!-- Debug info (only visible when DEBUG=True) -->
+      {% if debug %}
+      <div class="debug-section">
+        <h3>Debug: Raw POST Data</h3>
+        <pre>{{ post_data }}</pre>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Link to external JavaScript file -->
+  </body>
+</html>
