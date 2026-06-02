@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Great Number Game</title>
+    <!-- Django static files - different from Flask -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome to the Great Number Game!</h1>
+      <p>I am thinking of a number between 1 and 100</p>
+      <p>Take a guess!</p>
+
+      <!-- Django session syntax - different from Flask -->
+      {% if result %} {% if result == 'too_low' %}
+      <div class="box red-box">
+        <h2>Too low!</h2>
+      </div>
+      {% elif result == 'too_high' %}
+      <div class="box red-box">
+        <h2>Too high!</h2>
+      </div>
+      {% elif result == 'correct' %}
+      <div class="box green-box">
+        <h2>{{ random_number }} was the number!</h2>
+        <a href="/reset" class="btn">Play again!</a>
+      </div>
+      {% endif %} {% endif %}
+
+      <!-- Only show form if game is not won yet -->
+      {% if not result or result != 'correct' %}
+      <form action="/guess" method="post">
+        {% csrf_token %}
+        <!-- Django requires CSRF token -->
+        <input
+          type="number"
+          name="guess"
+          min="1"
+          max="100"
+          required
+          autofocus
+        />
+        <br />
+        <button type="submit" class="btn">Submit</button>
+      </form>
+      {% endif %}
+
+      <!-- Optional: Show number of attempts -->
+      {% if attempts > 0 %}
+      <p style="margin-top: 20px">Attempts: {{ attempts }}</p>
+      {% endif %}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ninja Gold Game</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Ninja Gold Game</h1>
+
+      <div class="gold-display">
+        <label>Your Gold:</label>
+        <div class="gold-amount">{{ gold }}</div>
+      </div>
+      <div class="activities-grid">
+        {% for activity in activities_list %}
+        <div class="activity-card">
+          <h2>{{ activity.name }}</h2>
+          <p>{{ activity.description }}</p>
+          <form action="{% url 'process_money' %}" method="POST">
+            {% csrf_token %}
+            <input
+              type="hidden"
+              name="location"
+              value="{{ activity.location }}"
+            />
+            <button type="submit">Find Gold!</button>
+          </form>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="activities-section">
+        <h3>Activities:</h3>
+        <div class="activities-log">
+          {% for activity in activities %}
+          <div class="activity-entry" style="color: {{ activity.color }};">
+            {{ activity.message }} ({{ activity.timestamp }})
+          </div>
+          {% empty %}
+          <div class="activity-entry">No activities yet. Start playing!</div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="reset-btn">
+        <form action="{% url 'reset' %}" method="POST">
+          {% csrf_token %}
+          <button type="submit" class="reset-button">Reset Game</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

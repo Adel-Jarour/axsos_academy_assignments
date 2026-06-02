@@ -1,5 +1,5 @@
 """
-URL configuration for first_django_project project.
+URL configuration for counter project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.2/topics/http/urls/
@@ -15,17 +15,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include, path
-from blogs import views as blogs_views
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    
-    # Root route - uses the same method as /blogs
-    path('', blogs_views.index, name='root'),
-    
-    # Include app routes
-    path('blogs/', include('blogs.urls')),
-    path('surveys/', include('surveys.urls')),
-    path('', include('users.urls')),
+    path('' ,include('counter_app.urls')),
 ]

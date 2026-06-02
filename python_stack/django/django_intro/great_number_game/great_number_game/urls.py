@@ -1,5 +1,5 @@
 """
-URL configuration for first_django_project project.
+URL configuration for great_number_game project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.2/topics/http/urls/
@@ -16,16 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from blogs import views as blogs_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    
-    # Root route - uses the same method as /blogs
-    path('', blogs_views.index, name='root'),
-    
-    # Include app routes
-    path('blogs/', include('blogs.urls')),
-    path('surveys/', include('surveys.urls')),
-    path('', include('users.urls')),
+    path('', include('guess.urls')),
 ]

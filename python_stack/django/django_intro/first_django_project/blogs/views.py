@@ -9,15 +9,15 @@ def root(request):
 
 # /blogs - display list placeholder
 def index(request):
-    return HttpResponse("placeholder to later display a list of all blogs")
+    return HttpResponse("placeholder to display a list of all blogs")
 
 # /blogs/new - display new form placeholder
 def new(request):
     return HttpResponse("placeholder to display a new form to create a new blog")
 
-# /blogs/create - redirect to "/"
+# /blogs/create - redirect to "/blogs"
 def create(request):
-    return redirect('/')
+    return redirect('/blogs')
 
 # /blogs/<number> - display blog number
 def show(request, number):

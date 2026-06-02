@@ -1,0 +1,64 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+.container {
+  text-align: center;
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.counter {
+  font-size: 48px;
+  color: #007bff;
+  margin: 20px 0;
+}
+
+.visits {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+button,
+.button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.reset-btn {
+  background-color: #dc3545;
+}
+
+.increment-form {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+}
+.increment-form input {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.increment-form button {
+  background-color: #28a745;
+}

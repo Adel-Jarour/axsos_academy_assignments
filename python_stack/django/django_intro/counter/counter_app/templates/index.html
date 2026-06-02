@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Counter App</title>
+    {% load static %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Counter App</h1>
+      <div class="visits">
+        Number of visits to this page: {{ visits }} time(s)
+      </div>
+      <div class="counter">Counter Value: {{ counter_value }}</div>
+
+      <div>
+        <a href="/destroy_session" class="button reset-btn">Reset Session</a>
+        <a href="/increment_by_two" class="button">+2</a>
+      </div>
+
+      <div class="increment-form">
+        <form method="POST" action="/increment_by_custom">
+          {% csrf_token %}
+          <label for="increment_value">Increment by:</label>
+          <input
+            type="number"
+            name="increment_value"
+            id="increment_value"
+            value="1"
+            min="1"
+          />
+          <button type="submit">Increment</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
