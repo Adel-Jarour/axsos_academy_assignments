@@ -1,0 +1,34 @@
+=== Single Model ORM Project - Shell Queries ===
+=== Users App ===
+
+# Step 1: Import User model
+from users_app.models import User
+
+# Step 2: Create 3 new users
+User.objects.create(first_name="John", last_name="Smith", email_address="john@example.com", age=25)
+User.objects.create(first_name="Jane", last_name="Doe", email_address="jane@example.com", age=30)
+User.objects.create(first_name="Mike", last_name="Lee", email_address="mike@example.com", age=22)
+
+# Step 3: Retrieve all users
+User.objects.all()
+
+# Step 4: Retrieve the last user
+User.objects.last()
+
+# Step 5: Retrieve the first user
+User.objects.first()
+
+# Step 6: Change user with id=3 so their last name is "Pancakes"
+user = User.objects.get(id=3)
+user.last_name = "Pancakes"
+user.save()
+
+# Step 7: Delete user with id=2
+user = User.objects.get(id=2)
+user.delete()
+
+# Step 8: Get all users sorted by first name (ascending)
+User.objects.all().order_by('first_name')
+
+# Step 9: BONUS - Get all users sorted by first name (descending)
+User.objects.all().order_by('-first_name')

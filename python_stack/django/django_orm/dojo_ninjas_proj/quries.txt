@@ -1,0 +1,46 @@
+=== Dojo Ninjas Project - All Shell Queries ===
+
+# Import models
+from dojo_ninjas_app.models import Dojo, Ninja
+
+# Create 3 dojos
+Dojo.objects.create(name="Coding Dojo Seattle", city="Seattle", state="WA")
+Dojo.objects.create(name="Coding Dojo San Jose", city="San Jose", state="CA")
+Dojo.objects.create(name="Coding Dojo Chicago", city="Chicago", state="IL")
+
+# Delete all dojos
+Dojo.objects.all().delete()
+
+# Create 3 new dojos
+dojo1 = Dojo.objects.create(name="Silicon Valley Dojo", city="Mountain View", state="CA")
+dojo2 = Dojo.objects.create(name="East Coast Dojo", city="New York", state="NY")
+dojo3 = Dojo.objects.create(name="Texas Dojo", city="Austin", state="TX")
+
+# Create 3 ninjas for first dojo
+Ninja.objects.create(first_name="John", last_name="Smith", dojo=dojo1)
+Ninja.objects.create(first_name="Jane", last_name="Doe", dojo=dojo1)
+Ninja.objects.create(first_name="Mike", last_name="Lee", dojo=dojo1)
+
+# Create 3 ninjas for second dojo
+Ninja.objects.create(first_name="Sarah", last_name="Kim", dojo=dojo2)
+Ninja.objects.create(first_name="David", last_name="Chen", dojo=dojo2)
+Ninja.objects.create(first_name="Lisa", last_name="Wong", dojo=dojo2)
+
+# Create 3 ninjas for third dojo
+Ninja.objects.create(first_name="Carlos", last_name="Garcia", dojo=dojo3)
+Ninja.objects.create(first_name="Maria", last_name="Rodriguez", dojo=dojo3)
+Ninja.objects.create(first_name="James", last_name="Brown", dojo=dojo3)
+
+# Retrieve all ninjas from first dojo
+dojo1.ninjas.all()
+
+# Retrieve all ninjas from last dojo (dojo3)
+dojo3.ninjas.all()
+
+# Retrieve the last ninja's dojo
+last_ninja = Ninja.objects.last()
+last_ninja.dojo
+
+# AFTER adding 'desc' field via migration:
+# Create a new dojo
+Dojo.objects.create(name="Florida Dojo", city="Miami", state="FL")
