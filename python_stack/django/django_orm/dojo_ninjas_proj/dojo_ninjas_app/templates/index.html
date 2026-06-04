@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <title>Dojos & Ninjas Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Dojos &amp; Ninjas Portal</h1>
+
+      <!-- Top Section: 2 Forms -->
+      <div class="top-section">
+        <div class="form-container">
+          <h2>Add a Dojo</h2>
+          <form action="/add_dojo" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <label>Name:</label>
+              <input type="text" name="name" placeholder="e.g. Coding Dojo" required />
+            </div>
+            <div class="form-group">
+              <label>City:</label>
+              <input type="text" name="city" placeholder="e.g. Seattle" required />
+            </div>
+            <div class="form-group">
+              <label>State:</label>
+              <input type="text" name="state" placeholder="e.g. WA" maxlength="2" required />
+            </div>
+            <button type="submit" class="btn">Add</button>
+          </form>
+        </div>
+
+        <div class="form-container">
+          <h2>Add a Ninja</h2>
+          <form action="/add_ninja" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <label>First Name:</label>
+              <input type="text" name="first_name" placeholder="e.g. John" required />
+            </div>
+            <div class="form-group">
+              <label>Last Name:</label>
+              <input type="text" name="last_name" placeholder="e.g. Doe" required />
+            </div>
+            <div class="form-group">
+              <label>Dojo:</label>
+              <select name="dojo" required>
+                <option value="" disabled selected>Select a Dojo</option>
+                {% for dojo in dojos %}
+                <option value="{{ dojo.id }}">{{ dojo.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <button type="submit" class="btn">Add</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Bottom Section: Dojos and Ninjas List -->
+      <div class="bottom-section">
+        <h2>All the Dojos</h2>
+        <div class="dojos-list">
+          {% for dojo in dojos %}
+          <div class="dojo-card">
+            <h3>{{ dojo.name }} ({{ dojo.city }}, {{ dojo.state }})</h3>
+            {% if dojo.desc and dojo.desc != "old dojo" %}
+            <p class="dojo-desc">{{ dojo.desc }}</p>
+            {% endif %}
+            <ul>
+              {% for ninja in dojo.ninjas.all %}
+              <li>{{ ninja.first_name }} {{ ninja.last_name }}</li>
+              {% empty %}
+              <li class="empty-msg">No ninjas recruited yet.</li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% empty %}
+          <p class="empty-msg">No dojos registered yet.</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
