@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ book.title }} - Details</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="detail-container">
+        <h1 class="detail-header">{{ book.title }}</h1>
+        <p class="detail-id">ID: {{ book.id }}</p>
+        
+        <h2 class="detail-section-title">Description:</h2>
+        <p class="detail-desc">{{ book.desc }}</p>
+
+        <h2 class="detail-section-title">Authors</h2>
+        <ul class="detail-list">
+            {% for author in associated_authors %}
+                <li>{{ author.first_name }} {{ author.last_name }}</li>
+            {% empty %}
+                <li>No authors associated with this book yet.</li>
+            {% endfor %}
+        </ul>
+
+        {% if remaining_authors %}
+        <form action="{% url 'add_author_to_book' book.id %}" method="post" class="add-association-form">
+            {% csrf_token %}
+            <div class="form-group" style="margin: 0; flex-grow: 1;">
+                <select name="author_id" required>
+                    <option value="" disabled selected>Select an Author</option>
+                    {% for author in remaining_authors %}
+                        <option value="{{ author.id }}">{{ author.first_name }} {{ author.last_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn">Add</button>
+        </form>
+        {% else %}
+        <p style="font-style: italic; color: #7f8c8d;">All authors in the database are already associated with this book.</p>
+        {% endif %}
+
+        <div class="navigation-links">
+            <a href="{% url 'books' %}">Back to Books List</a>
+            <a href="{% url 'authors' %}">Go to Authors Database</a>
+        </div>
+    </div>
+</body>
+</html>

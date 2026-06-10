@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authors Database</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <!-- Left Column: Add an Author Form -->
+            <div class="col-form">
+                <h2>Add an Author</h2>
+                <form action="{% url 'add_author' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        <input type="text" id="first_name" name="first_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" id="last_name" name="last_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Notes</label>
+                        <textarea id="notes" name="notes" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Add</button>
+                </form>
+            </div>
+
+            <!-- Right Column: Authors Table -->
+            <div class="col-table">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for author in all_authors %}
+                        <tr>
+                            <td>{{ author.id }}</td>
+                            <td>{{ author.first_name }} {{ author.last_name }}</td>
+                            <td><a href="{% url 'author_detail' author.id %}">View</a></td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="3" style="text-align: center;">No authors found in the database.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="navigation-links">
+            <a href="{% url 'books' %}">Go to Books Database</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{{ show.title }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>TV Show {{ show.id }}</h1>
+
+      <div class="show-details">
+        <p><strong>Title:</strong> {{ show.title }}</p>
+        <p><strong>Network:</strong> {{ show.network }}</p>
+        <p>
+          <strong>Release Date:</strong> {{ show.release_date|date:"F j, Y" }}
+        </p>
+        <p><strong>Description:</strong> {{ show.description }}</p>
+      </div>
+
+      <p>
+        <strong>Last updated:</strong> {{ show.updated_at|date:"F j, Y, g:i a"}}
+      </p>
+      <p>
+        <a href="/shows/{{ show.id }}/edit/" class="btn-edit">Edit</a> |
+        <a href="/shows/" class="btn-back">Go Back</a>
+      </p>
+    </div>
+  </body>
+</html>
