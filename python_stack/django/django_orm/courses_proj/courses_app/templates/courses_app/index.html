@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Courses — Add a Course to All Bootcamps</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <div class="card">
+        <!-- ── Add a new course form ─────────────────── -->
+        <section class="form-section">
+          <h2>Add a new course</h2>
+          <form id="add-course-form" action="/" method="POST" novalidate>
+            {% csrf_token %}
+            <div class="form-grid">
+              <label for="name">Name:</label>
+              <div>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value="{{ name_val|default:'' }}"
+                  placeholder="Course name (> 5 chars)"
+                  autocomplete="off"
+                />
+                {% if errors.name %}
+                <p class="error-msg">{{ errors.name }}</p>
+                {% endif %}
+              </div>
+
+              <label for="description">Description:</label>
+              <div>
+                <textarea
+                  id="description"
+                  name="description"
+                  placeholder="Course description (> 15 chars)"
+                >
+{{ desc_val|default:'' }}</textarea
+                >
+                {% if errors.description %}
+                <p class="error-msg">{{ errors.description }}</p>
+                {% endif %}
+              </div>
+            </div>
+            <div class="btn-row">
+              <button type="submit" class="btn-add" id="btn-add-course">
+                Add
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <!-- ── Courses table ─────────────────────────── -->
+        <section class="courses-section">
+          <h2>Courses</h2>
+          <table class="courses-table" id="courses-table">
+            <thead>
+              <tr>
+                <th>Course Name</th>
+                <th>Description</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for course in courses %}
+              <tr>
+                <td>{{ course.name }}</td>
+                <td class="desc-cell">
+                  {% if course.description %} {{ course.description.content }}
+                  {% else %}
+                  <em>No description</em>
+                  {% endif %}
+                </td>
+                <td class="date-cell">
+                  {{ course.created_at|date:"M jS Y g:iA" }}
+                </td>
+                <td class="actions-cell">
+                  <a class="link-comment" href="{% url 'comments' course.id %}"
+                    >comments</a
+                  >
+                  <a class="link-remove" href="{% url 'destroy' course.id %}"
+                    >remove</a
+                  >
+                </td>
+              </tr>
+              {% empty %}
+              <tr class="empty-row">
+                <td colspan="4">No courses yet. Add one above!</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>

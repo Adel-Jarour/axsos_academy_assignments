@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Delete a Course</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <div class="card">
+
+      <div class="warning-icon">!</div>
+      <h2>Are you sure you want to delete the following course?</h2>
+
+      <div class="info-grid">
+        <span class="label">Name:</span>
+        <span class="value">{{ course.name }}</span>
+
+        <span class="label">Description:</span>
+        <span class="value">
+          {% if course.description %}
+            {{ course.description.content }}
+          {% else %}
+            <em>No description</em>
+          {% endif %}
+        </span>
+      </div>
+
+      <form method="POST" action="{% url 'destroy' course.id %}">
+        {% csrf_token %}
+        <div class="btn-row">
+          <button type="submit" name="action" value="no" class="btn-no" id="btn-no">No</button>
+          <button type="submit" name="action" value="yes" class="btn-yes" id="btn-yes-delete">Yes! I want to delete this</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</body>
+</html>

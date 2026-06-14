@@ -1,0 +1,194 @@
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f0f2f5;
+  min-height: 100vh;
+  padding: 32px 16px;
+  color: #1a1a2e;
+}
+
+.page-wrapper {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #d0d0d0;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  padding: 28px 32px 36px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+}
+
+/* ── Section headings ──────────────────────────────── */
+h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 16px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+/* ── Form ──────────────────────────────────────────── */
+.form-section {
+  margin-bottom: 36px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 10px 12px;
+  align-items: start;
+}
+.form-grid label {
+  font-size: 14px;
+  font-weight: 500;
+  padding-top: 7px;
+  color: #374151;
+}
+.form-grid input[type="text"],
+.form-grid textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 7px 10px;
+  font-size: 14px;
+  font-family: inherit;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  resize: vertical;
+}
+.form-grid input[type="text"]:focus,
+.form-grid textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+.form-grid textarea {
+  min-height: 80px;
+}
+
+.error-msg {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.btn-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+.btn-add {
+  background: #16a34a;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.12s;
+}
+.btn-add:hover {
+  background: #15803d;
+  transform: translateY(-1px);
+}
+.btn-add:active {
+  transform: translateY(0);
+}
+
+/* ── Courses table ─────────────────────────────────── */
+.courses-section {
+  margin-top: 8px;
+}
+
+.courses-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.courses-table thead tr {
+  background: #f1f5f9;
+}
+.courses-table th {
+  text-align: left;
+  padding: 10px 14px;
+  font-weight: 600;
+  color: #374151;
+  border: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+.courses-table td {
+  padding: 9px 14px;
+  border: 1px solid #e2e8f0;
+  vertical-align: top;
+  color: #1f2937;
+}
+.courses-table tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+.courses-table tbody tr:hover {
+  background: #eff6ff;
+  transition: background 0.15s;
+}
+
+.courses-table .desc-cell {
+  max-width: 200px;
+  color: #6b7280;
+  font-size: 13px;
+}
+.courses-table .date-cell {
+  white-space: nowrap;
+  color: #6b7280;
+  font-size: 13px;
+}
+.courses-table .actions-cell {
+  white-space: nowrap;
+}
+
+.link-remove {
+  color: #dc2626;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+.link-remove:hover {
+  color: #991b1b;
+  text-decoration: underline;
+}
+
+.link-comment {
+  color: #2563eb;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  margin-right: 10px;
+  transition: color 0.15s;
+}
+.link-comment:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.empty-row td {
+  text-align: center;
+  color: #9ca3af;
+  font-style: italic;
+  padding: 20px;
+}
+
+/* ── Flash / global error alert ───────────────────── */
+.alert {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  border-radius: 6px;
+  padding: 10px 16px;
+  color: #b91c1c;
+  font-size: 13px;
+  margin-bottom: 16px;
+}

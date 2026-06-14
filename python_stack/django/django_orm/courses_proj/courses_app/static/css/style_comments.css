@@ -1,0 +1,146 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: #f0f2f5;
+  min-height: 100vh;
+  padding: 32px 16px;
+  color: #1a1a2e;
+}
+
+.page-wrapper {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #d0d0d0;
+  border-radius: 8px;
+  padding: 28px 32px 36px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+}
+
+.back-link {
+  display: inline-block;
+  color: #2563eb;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 18px;
+  transition: color 0.15s;
+}
+.back-link:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 4px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #e2e8f0;
+}
+.course-subtitle {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 20px;
+  margin-top: 4px;
+}
+
+/* ── Add comment form ──────────────────────────────── */
+.form-section {
+  margin-bottom: 30px;
+}
+.form-section h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #374151;
+}
+.form-section textarea {
+  width: 100%;
+  min-height: 80px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+.form-section textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+.error-msg {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 4px;
+}
+.btn-submit {
+  display: inline-block;
+  margin-top: 10px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    transform 0.12s;
+}
+.btn-submit:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+/* ── Comments list ─────────────────────────────────── */
+.comments-section h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #374151;
+}
+.comment-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  transition: box-shadow 0.15s;
+}
+.comment-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+.comment-content {
+  font-size: 14px;
+  color: #1f2937;
+  line-height: 1.5;
+}
+.comment-date {
+  font-size: 11px;
+  color: #9ca3af;
+  margin-top: 6px;
+}
+.no-comments {
+  text-align: center;
+  color: #9ca3af;
+  font-style: italic;
+  font-size: 14px;
+  padding: 20px 0;
+}
