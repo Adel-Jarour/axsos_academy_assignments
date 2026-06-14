@@ -1,0 +1,144 @@
+/* === Base === */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 15px;
+  background-color: #f0f2f5;
+  color: #333;
+  min-height: 100vh;
+}
+
+/* === Page layout === */
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.container {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* === Card === */
+.card {
+  background-color: #fff;
+  border: 1px solid #dde1e7;
+  border-radius: 10px;
+  padding: 32px 28px;
+  width: 340px;
+}
+
+.card h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #1a1a2e;
+}
+
+/* === Divider between cards === */
+.divider {
+  width: 1px;
+  background-color: #dde1e7;
+  align-self: stretch;
+  min-height: 100%;
+}
+
+/* === Form === */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.form-group input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+  border-color: #4a6cf7;
+}
+
+/* === Error message === */
+.error {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: #d9534f;
+}
+
+/* === Button === */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  background-color: #4a6cf7;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.btn:hover {
+  background-color: #3a5ce5;
+}
+
+/* === Success Screen === */
+.success-card {
+  background-color: #fff;
+  border: 1px solid #dde1e7;
+  border-radius: 10px;
+  padding: 48px 40px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.success-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #e6f9ee;
+  color: #2ecc71;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.welcome-text {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.success-text {
+  color: #2ecc71;
+  font-size: 15px;
+  font-weight: 500;
+}

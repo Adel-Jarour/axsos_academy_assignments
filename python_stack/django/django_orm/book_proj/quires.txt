@@ -1,0 +1,25 @@
+>>> from books.models import User, Book
+>>> user1 = User.objects.create(
+...     first_name="John",
+...     last_name="Doe",
+...     email="john@example.com",
+...     password="password123"
+... )
+>>> book1 = Book.objects.create(
+... title='Django for beginners',
+... desc='Learn Dejango from 0 to hero',
+... uploaded_by=user1
+... )
+>>> book1.users_who_like.add(user1)
+>>> uploader = book1.uploaded_by
+>>> print(uploader.first_name)
+John
+>>> uploaded_books = user1.books_uploaded.all()
+>>> print(uploaded_books)
+<QuerySet [<Book: Django for beginners>]>
+>>> fans = book1.users_who_like.all()
+>>> print(fans)
+<QuerySet [<User: John Doe>]>
+>>> liked_books = user1.liked_books.all()
+>>> print(liked_books)
+<QuerySet [<Book: Django for beginners>]>

@@ -11,7 +11,7 @@
     <div class="container">
       <h1>Edit Show</h1>
 
-      <form action="/shows/{{ show.id }}/update/" method="POST">
+      <form action="/shows/{{ show.id }}/edit/" method="POST">
         {% csrf_token %}
 
         <div class="form-group">
@@ -41,10 +41,15 @@
 
         <div class="form-group">
           <label>Description</label>
-          <textarea name="description" rows="5" required>
-          {{ show.description }}
-          </textarea>
+          <!-- This for avoid format text area line when save the cahnges, to avoid the white space at beginning. -->
+          <!-- prettier-ignore -->
+          <textarea name="description" rows="5">{{ show.description }}</textarea
+          >
         </div>
+
+        {% for key, value in errors.items %}
+        <span class="error-text">{{ value }}</span>
+        {% endfor %}
 
         <div class="button-group">
           <button type="submit" class="btn-update">Update</button>

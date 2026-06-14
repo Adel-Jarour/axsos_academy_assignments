@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Favorite Books</title>
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        background: #f0f4f8;
+        min-height: 100vh;
+        padding: 0;
+      }
+
+      /* ── Top bar ── */
+      .topbar {
+        background: #fff;
+        border-bottom: 1px solid #e2e8f0;
+        padding: 0.85rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      }
+
+      .topbar-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #2d3748;
+        letter-spacing: -0.4px;
+      }
+
+      .topbar-welcome {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #2d3748;
+      }
+
+      .logout-link {
+        font-size: 0.85rem;
+        color: #e53e3e;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 0.35rem 0.9rem;
+        border: 1.5px solid #fc8181;
+        border-radius: 6px;
+        transition: background 0.15s, color 0.15s;
+      }
+
+      .logout-link:hover { background: #e53e3e; color: #fff; }
+
+      /* ── Main layout ── */
+      .main {
+        display: flex;
+        gap: 2rem;
+        padding: 2rem;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      /* ── Add Book Panel ── */
+      .panel-add {
+        flex: 0 0 280px;
+      }
+
+      /* ── All Books Panel ── */
+      .panel-books {
+        flex: 1;
+      }
+
+      .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+        border: 1px solid #e2e8f0;
+      }
+
+      .card h2 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 1.2rem;
+        padding-bottom: 0.6rem;
+        border-bottom: 2px solid #e2e8f0;
+      }
+
+      .form-group { margin-bottom: 1rem; }
+
+      label {
+        display: block;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #4a5568;
+        margin-bottom: 0.3rem;
+      }
+
+      input[type="text"],
+      textarea {
+        width: 100%;
+        padding: 0.5rem 0.7rem;
+        border: 1.5px solid #cbd5e0;
+        border-radius: 7px;
+        font-size: 0.9rem;
+        color: #2d3748;
+        background: #f7fafc;
+        outline: none;
+        font-family: inherit;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+
+      input:focus, textarea:focus {
+        border-color: #4299e1;
+        box-shadow: 0 0 0 3px rgba(66,153,225,0.15);
+        background: #fff;
+      }
+
+      input.error-field, textarea.error-field { border-color: #fc8181; }
+
+      .error {
+        display: block;
+        font-size: 0.75rem;
+        color: #e53e3e;
+        margin-top: 0.25rem;
+      }
+
+      textarea { resize: vertical; min-height: 70px; }
+
+      .btn-add {
+        display: inline-block;
+        padding: 0.55rem 1.4rem;
+        background: #3182ce;
+        color: #fff;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 7px;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.1s;
+      }
+
+      .btn-add:hover { background: #2b6cb0; transform: translateY(-1px); }
+
+      /* ── Book list ── */
+      .book-list { list-style: none; }
+
+      .book-item {
+        padding: 1rem 0;
+        border-bottom: 1px solid #edf2f7;
+      }
+
+      .book-item:last-child { border-bottom: none; }
+
+      .book-item-title a {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #2b6cb0;
+        text-decoration: none;
+        transition: color 0.15s;
+      }
+
+      .book-item-title a:hover { color: #2c5282; text-decoration: underline; }
+
+      .book-meta {
+        font-size: 0.8rem;
+        color: #718096;
+        margin-top: 0.2rem;
+      }
+
+      .favorite-status {
+        display: inline-block;
+        font-size: 0.78rem;
+        color: #718096;
+        font-style: italic;
+        margin-top: 0.35rem;
+      }
+
+      .fav-link {
+        display: inline-block;
+        font-size: 0.78rem;
+        color: #3182ce;
+        text-decoration: none;
+        font-weight: 600;
+        margin-top: 0.35rem;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 0;
+        font-family: inherit;
+      }
+
+      .fav-link:hover { text-decoration: underline; }
+
+      @media (max-width: 640px) {
+        .main { flex-direction: column; }
+        .panel-add { flex: none; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Top bar -->
+    <div class="topbar">
+      <span class="topbar-title">📚 Favorite Books</span>
+      <span class="topbar-welcome">Welcome, {{ user.first_name }}!</span>
+      <a href="/logout/" class="logout-link">Log Out</a>
+    </div>
+
+    <div class="main">
+
+      <!-- Add a Book -->
+      <div class="panel-add">
+        <div class="card">
+          <h2>Add a Favorite Book</h2>
+          <form action="/books/add/" method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+              <label for="book-title">Title</label>
+              <input
+                id="book-title"
+                type="text"
+                name="title"
+                value="{{ book_data.title }}"
+                class="{% if book_errors.title %}error-field{% endif %}"
+              />
+              {% if book_errors.title %}
+              <span class="error">{{ book_errors.title }}</span>
+              {% endif %}
+            </div>
+
+            <div class="form-group">
+              <label for="book-desc">Description</label>
+              <textarea
+                id="book-desc"
+                name="desc"
+                class="{% if book_errors.desc %}error-field{% endif %}"
+              >{{ book_data.desc }}</textarea>
+              {% if book_errors.desc %}
+              <span class="error">{{ book_errors.desc }}</span>
+              {% endif %}
+            </div>
+
+            <button type="submit" class="btn-add">Add</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- All Books -->
+      <div class="panel-books">
+        <div class="card">
+          <h2>All Books</h2>
+          {% if all_books %}
+          <ul class="book-list">
+            {% for book in all_books %}
+            <li class="book-item">
+              <div class="book-item-title">
+                <a href="/books/{{ book.id }}/">{{ book.title }}</a>
+              </div>
+              <div class="book-meta">
+                (added by {{ book.uploaded_by.first_name }} {{ book.uploaded_by.last_name }})
+              </div>
+              {% if book.id in liked_ids %}
+                <span class="favorite-status">&#9733; this is one of your favorites</span>
+              {% else %}
+                <form action="/books/{{ book.id }}/favorite/" method="post" style="display:inline;">
+                  {% csrf_token %}
+                  <button type="submit" class="fav-link">Add to Favorites</button>
+                </form>
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <p style="color:#a0aec0; font-size:0.9rem;">No books yet. Be the first to add one!</p>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

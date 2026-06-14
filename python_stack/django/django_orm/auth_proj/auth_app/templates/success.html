@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Success – Auth</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <div class="success-card">
+        <div class="success-icon">✓</div>
+        <!-- prettier-ignore -->
+        <p class="welcome-text">
+          Welcome{% if user and user.first_name %}, {{ user.first_name }}{%endif%}!
+        </p>
+        <p class="success-text">You have successfully logged in.</p>
+        <a href="/logout/" class="btn">Logout</a>
+      </div>
+    </div>
+  </body>
+</html>

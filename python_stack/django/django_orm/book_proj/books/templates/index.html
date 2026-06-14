@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login &amp; Registration – Favorite Books</title>
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        background: #f0f4f8;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1rem;
+      }
+
+      .page-title {
+        text-align: center;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #1a202c;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.5px;
+      }
+
+      .container {
+        display: flex;
+        gap: 2rem;
+        max-width: 860px;
+        width: 100%;
+        align-items: flex-start;
+      }
+
+      .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 2rem;
+        flex: 1;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        border: 1px solid #e2e8f0;
+      }
+
+      .card h2 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 2px solid #e2e8f0;
+      }
+
+      .divider {
+        width: 1px;
+        background: #e2e8f0;
+        align-self: stretch;
+        min-height: 200px;
+      }
+
+      .form-group {
+        margin-bottom: 1rem;
+      }
+
+      label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #4a5568;
+        margin-bottom: 0.35rem;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 0.55rem 0.75rem;
+        border: 1.5px solid #cbd5e0;
+        border-radius: 7px;
+        font-size: 0.95rem;
+        color: #2d3748;
+        background: #f7fafc;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        outline: none;
+      }
+
+      input:focus {
+        border-color: #4299e1;
+        box-shadow: 0 0 0 3px rgba(66,153,225,0.15);
+        background: #fff;
+      }
+
+      input.error-field {
+        border-color: #fc8181;
+      }
+
+      .error {
+        display: block;
+        font-size: 0.78rem;
+        color: #e53e3e;
+        margin-top: 0.3rem;
+      }
+
+      .btn {
+        display: inline-block;
+        width: 100%;
+        padding: 0.65rem 1.5rem;
+        background: #3182ce;
+        color: #fff;
+        font-size: 0.95rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 7px;
+        cursor: pointer;
+        margin-top: 0.5rem;
+        transition: background 0.2s, transform 0.1s;
+        text-align: center;
+      }
+
+      .btn:hover { background: #2b6cb0; transform: translateY(-1px); }
+      .btn:active { transform: translateY(0); }
+
+      @media (max-width: 600px) {
+        .container { flex-direction: column; }
+        .divider { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1 class="page-title">📚 Favorite Books</h1>
+      <div class="container">
+
+        <!-- REGISTER FORM -->
+        <div class="card">
+          <h2>Registration</h2>
+          <form action="/register/" method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+              <label for="reg-first-name">First Name</label>
+              <input
+                id="reg-first-name"
+                type="text"
+                name="first_name"
+                value="{{ register_data.first_name }}"
+                class="{% if register_errors.first_name %}error-field{% endif %}"
+              />
+              {% if register_errors.first_name %}
+              <span class="error">{{ register_errors.first_name }}</span>
+              {% endif %}
+            </div>
+
+            <div class="form-group">
+              <label for="reg-last-name">Last Name</label>
+              <input
+                id="reg-last-name"
+                type="text"
+                name="last_name"
+                value="{{ register_data.last_name }}"
+                class="{% if register_errors.last_name %}error-field{% endif %}"
+              />
+              {% if register_errors.last_name %}
+              <span class="error">{{ register_errors.last_name }}</span>
+              {% endif %}
+            </div>
+
+            <div class="form-group">
+              <label for="reg-email">Email</label>
+              <input
+                id="reg-email"
+                type="email"
+                name="email"
+                value="{{ register_data.email }}"
+                class="{% if register_errors.email %}error-field{% endif %}"
+              />
+              {% if register_errors.email %}
+              <span class="error">{{ register_errors.email }}</span>
+              {% endif %}
+            </div>
+
+            <div class="form-group">
+              <label for="reg-password">Password</label>
+              <input
+                id="reg-password"
+                type="password"
+                name="password"
+                class="{% if register_errors.password %}error-field{% endif %}"
+              />
+              {% if register_errors.password %}
+              <span class="error">{{ register_errors.password }}</span>
+              {% endif %}
+            </div>
+
+            <div class="form-group">
+              <label for="reg-confirm-password">Confirm Password</label>
+              <input
+                id="reg-confirm-password"
+                type="password"
+                name="confirm_password"
+                class="{% if register_errors.confirm_password %}error-field{% endif %}"
+              />
+              {% if register_errors.confirm_password %}
+              <span class="error">{{ register_errors.confirm_password }}</span>
+              {% endif %}
+            </div>
+
+            <button type="submit" class="btn">Register</button>
+          </form>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- LOGIN FORM -->
+        <div class="card">
+          <h2>Login</h2>
+          <form action="/login/" method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+              <label for="login-email">Email</label>
+              <input
+                id="login-email"
+                type="email"
+                name="email"
+                value="{{ login_data.email }}"
+                class="{% if login_errors.email %}error-field{% endif %}"
+              />
+              {% if login_errors.email %}
+              <span class="error">{{ login_errors.email }}</span>
+              {% endif %}
+            </div>
+
+            <div class="form-group">
+              <label for="login-password">Password</label>
+              <input
+                id="login-password"
+                type="password"
+                name="password"
+                class="{% if login_errors.password %}error-field{% endif %}"
+              />
+              {% if login_errors.password %}
+              <span class="error">{{ login_errors.password }}</span>
+              {% endif %}
+            </div>
+
+            <button type="submit" class="btn" style="background:#e53e3e;">Log In</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>

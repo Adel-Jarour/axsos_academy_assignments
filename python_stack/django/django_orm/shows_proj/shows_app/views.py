@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from shows_app.models import Show
 
@@ -6,51 +6,33 @@ from shows_app.models import Show
 
 def index(request):
     shows = Show.objects.all()
-    context = {
-        'shows': shows
-    }
-    return render(request, 'index.html', context)
+    return render(request, 'index.html', {'shows': shows})
 
-def newShow(request):
-    return render(request, 'new_show.html')
+def show(request, id):
+    show = get_object_or_404(Show, id=id)
+    return render(request, 'show.html', {'show': show})
 
 def create(request):
     if request.method == 'POST':
-        show = Show.objects.create(
-            title=request.POST['title'],
-            network=request.POST['network'],
-            release_date=request.POST['release_date'],
-            description=request.POST['description']
-        )
+        show, errors = Show.objects.create_show(request.POST)
+        if errors:
+            return render(request, 'new_show.html', {'errors': errors, 'data': request.POST})
         return redirect(f'/shows/{show.id}')
-    return redirect('/shows')
 
-def show(request, id):
-    show = Show.objects.get(id=id)
-    context = {
-        'show': show
-    }
-    return render(request, 'show.html', context)
+    return render(request, 'new_show.html')
 
 def edit(request, id):
-    show = Show.objects.get(id=id)
-    context = {
-        'show': show
-    }
-    return render(request, 'edit.html', context)
+    show = get_object_or_404(Show, id=id)
 
-def update(request, id):
     if request.method == 'POST':
-        show = Show.objects.get(id=id)
-        show.title = request.POST['title']
-        show.network = request.POST['network']
-        show.release_date = request.POST['release_date']
-        show.description = request.POST['description']
-        show.save()
-        return redirect(f'/shows/{show.id}')
-    return redirect('/shows')
+        updated_show, errors = Show.objects.update_show(id, request.POST)
+        if errors:
+            return render(request, 'edit.html', {'errors': errors, 'show': show, 'data': request.POST})
+        return redirect(f'/shows/{updated_show.id}')
+
+    return render(request, 'edit.html', {'show': show})
 
 def destroy(request, id):
-    show = Show.objects.get(id=id)
+    show = get_object_or_404(Show, id=id)
     show.delete()
     return redirect('/shows')

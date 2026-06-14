@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ book.title }} – Favorite Books</title>
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        background: #f0f4f8;
+        min-height: 100vh;
+      }
+
+      /* ── Top bar ── */
+      .topbar {
+        background: #fff;
+        border-bottom: 1px solid #e2e8f0;
+        padding: 0.85rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      }
+
+      .topbar-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #2d3748;
+        letter-spacing: -0.4px;
+      }
+
+      .topbar-welcome {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #2d3748;
+      }
+
+      .logout-link {
+        font-size: 0.85rem;
+        color: #e53e3e;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 0.35rem 0.9rem;
+        border: 1.5px solid #fc8181;
+        border-radius: 6px;
+        transition: background 0.15s, color 0.15s;
+      }
+
+      .logout-link:hover { background: #e53e3e; color: #fff; }
+
+      /* ── Layout ── */
+      .main {
+        display: flex;
+        gap: 2rem;
+        padding: 2rem;
+        max-width: 900px;
+        margin: 0 auto;
+        align-items: flex-start;
+      }
+
+      .panel-book { flex: 1; }
+      .panel-sidebar { flex: 0 0 220px; }
+
+      .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+        border: 1px solid #e2e8f0;
+      }
+
+      .card h2 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 0.4rem;
+      }
+
+      .card h3 {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #4a5568;
+        margin-bottom: 0.8rem;
+        padding-bottom: 0.4rem;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .book-meta {
+        font-size: 0.82rem;
+        color: #718096;
+        margin-bottom: 0.25rem;
+      }
+
+      .book-desc {
+        margin-top: 1rem;
+        font-size: 0.92rem;
+        color: #4a5568;
+        line-height: 1.6;
+      }
+
+      /* ── Likers list ── */
+      .likers-list { list-style: none; margin-top: 0; }
+
+      .likers-list li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.45rem 0;
+        border-bottom: 1px solid #f0f4f8;
+        font-size: 0.88rem;
+        color: #2d3748;
+      }
+
+      .likers-list li:last-child { border-bottom: none; }
+
+      /* ── Action buttons ── */
+      .btn-inline {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: #3182ce;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        padding: 0;
+        text-decoration: none;
+      }
+
+      .btn-inline:hover { text-decoration: underline; }
+
+      .btn-inline.danger { color: #e53e3e; }
+
+      /* ── Edit form ── */
+      .edit-section { margin-top: 1.5rem; }
+
+      .form-group { margin-bottom: 0.9rem; }
+
+      label {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #4a5568;
+        margin-bottom: 0.3rem;
+      }
+
+      input[type="text"],
+      textarea {
+        width: 100%;
+        padding: 0.5rem 0.7rem;
+        border: 1.5px solid #cbd5e0;
+        border-radius: 7px;
+        font-size: 0.9rem;
+        color: #2d3748;
+        background: #f7fafc;
+        outline: none;
+        font-family: inherit;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+
+      input:focus, textarea:focus {
+        border-color: #4299e1;
+        box-shadow: 0 0 0 3px rgba(66,153,225,0.15);
+        background: #fff;
+      }
+
+      input.error-field, textarea.error-field { border-color: #fc8181; }
+
+      .error {
+        display: block;
+        font-size: 0.75rem;
+        color: #e53e3e;
+        margin-top: 0.2rem;
+      }
+
+      textarea { resize: vertical; min-height: 80px; }
+
+      .btn-row {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 0.5rem;
+      }
+
+      .btn {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.88rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 7px;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.1s;
+        font-family: inherit;
+      }
+
+      .btn:hover { transform: translateY(-1px); }
+
+      .btn-update { background: #3182ce; color: #fff; }
+      .btn-update:hover { background: #2b6cb0; }
+
+      .btn-delete { background: #e53e3e; color: #fff; }
+      .btn-delete:hover { background: #c53030; }
+
+      .btn-fav {
+        display: block;
+        width: 100%;
+        padding: 0.55rem 1rem;
+        background: #edf2f7;
+        color: #2d3748;
+        font-size: 0.88rem;
+        font-weight: 600;
+        border: 1.5px solid #cbd5e0;
+        border-radius: 7px;
+        cursor: pointer;
+        margin-top: 1rem;
+        transition: background 0.2s;
+        font-family: inherit;
+      }
+
+      .btn-fav:hover { background: #e2e8f0; }
+
+      .back-link {
+        display: inline-block;
+        margin-bottom: 1rem;
+        font-size: 0.85rem;
+        color: #4299e1;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .back-link:hover { text-decoration: underline; }
+
+      @media (max-width: 640px) {
+        .main { flex-direction: column; }
+        .panel-sidebar { flex: none; width: 100%; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Top bar -->
+    <div class="topbar">
+      <span class="topbar-title">📚 Favorite Books</span>
+      <span class="topbar-welcome">Welcome, {{ user.first_name }}!</span>
+      <a href="/logout/" class="logout-link">Log Out</a>
+    </div>
+
+    <div class="main">
+
+      <!-- Book Info Panel -->
+      <div class="panel-book">
+        <a href="/books/" class="back-link">← Back to All Books</a>
+
+        <div class="card">
+          {% if is_uploader %}
+            <!-- UPLOADER VIEW: editable form -->
+            <h2>{{ book.title }}</h2>
+            <p class="book-meta">Added by: {{ book.uploaded_by.first_name }} {{ book.uploaded_by.last_name }}</p>
+            <p class="book-meta">Created: {{ book.created_at|date:"N j, Y @ g:i a" }}</p>
+            <p class="book-meta">Last updated: {{ book.updated_at|date:"N j, Y @ g:i a" }}</p>
+
+            <div class="book-desc">
+              <strong>Description:</strong> {{ book.desc }}
+            </div>
+
+            <div class="edit-section">
+              <form action="/books/{{ book.id }}/update/" method="post">
+                {% csrf_token %}
+
+                <div class="form-group">
+                  <label for="edit-title">Title</label>
+                  <input
+                    id="edit-title"
+                    type="text"
+                    name="title"
+                    value="{{ book.title }}"
+                    class="{% if update_errors.title %}error-field{% endif %}"
+                  />
+                  {% if update_errors.title %}
+                  <span class="error">{{ update_errors.title }}</span>
+                  {% endif %}
+                </div>
+
+                <div class="form-group">
+                  <label for="edit-desc">Description</label>
+                  <textarea
+                    id="edit-desc"
+                    name="desc"
+                    class="{% if update_errors.desc %}error-field{% endif %}"
+                  >{{ book.desc }}</textarea>
+                  {% if update_errors.desc %}
+                  <span class="error">{{ update_errors.desc }}</span>
+                  {% endif %}
+                </div>
+
+                <div class="btn-row">
+                  <button type="submit" class="btn btn-update">Update</button>
+                </div>
+              </form>
+
+              <form action="/books/{{ book.id }}/delete/" method="post" style="margin-top:0.5rem;">
+                {% csrf_token %}
+                <button
+                  type="submit"
+                  class="btn btn-delete"
+                  onclick="return confirm('Are you sure you want to delete this book?');"
+                >Delete</button>
+              </form>
+            </div>
+
+          {% else %}
+            <!-- NON-UPLOADER VIEW: read-only -->
+            <h2>{{ book.title }}</h2>
+            <p class="book-meta">Added by: {{ book.uploaded_by.first_name }} {{ book.uploaded_by.last_name }}</p>
+            <p class="book-meta">Created: {{ book.created_at|date:"N j, Y @ g:i a" }}</p>
+            <p class="book-meta">Last updated: {{ book.updated_at|date:"N j, Y @ g:i a" }}</p>
+
+            <div class="book-desc">
+              <strong>Description:</strong> {{ book.desc }}
+            </div>
+
+            {% if has_favorited %}
+              <!-- Already favorited: show Un-Favorite option -->
+              <form action="/books/{{ book.id }}/unfavorite/" method="post" style="margin-top:1rem;">
+                {% csrf_token %}
+                <button type="submit" class="btn-fav">&#9733; Un-Favorite</button>
+              </form>
+            {% else %}
+              <!-- Not yet favorited -->
+              <form action="/books/{{ book.id }}/favorite/" method="post" style="margin-top:1rem;">
+                {% csrf_token %}
+                <button type="submit" class="btn-fav">&#9734; Add to Favorites</button>
+              </form>
+            {% endif %}
+
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Who Likes This Book -->
+      <div class="panel-sidebar">
+        <div class="card">
+          <h3>Users Who Like This Book:</h3>
+          {% if likers %}
+          <ul class="likers-list">
+            {% for liker in likers %}
+            <li>
+              <span>{{ liker.first_name }} {{ liker.last_name }}</span>
+              {% if liker == user %}
+                {% if not is_uploader %}
+                  <form action="/books/{{ book.id }}/unfavorite/" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-inline danger">Un-Favorite</button>
+                  </form>
+                {% endif %}
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <p style="color:#a0aec0; font-size:0.85rem;">No one has favorited this book yet.</p>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

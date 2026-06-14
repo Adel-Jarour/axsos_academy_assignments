@@ -109,3 +109,12 @@ h1 {
   margin: 10px 0;
   line-height: 1.6;
 }
+
+/* Error styles */
+
+.error-text {
+  color: #dc3545;
+  font-size: 14px;
+  display: block;
+  margin-top: 5px;
+}
